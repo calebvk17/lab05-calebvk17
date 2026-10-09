@@ -23,6 +23,17 @@ def main():
     #   data row (its values joined by commas) whose value in that column equals
     #   args.value.
 
+    with open(args.filename) as file:
+        reader = csv.reader(file)
+        rows = list(reader)
+
+    header = rows[0]
+
+    column_index = header.index(args.column)
+
+    for row in rows[1:]:
+        if row[column_index] == args.value:
+            print(",".join(row))
 
 if __name__ == "__main__":
     main()
